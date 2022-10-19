@@ -1,0 +1,30 @@
+<div class="text-center">
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <p *ngIf="loginError.length > 0" class="error">{{loginError}}</p>
+
+            <div class="form-floating">
+                <input type="email" formControlName="email" class="form-control" id="floatingInput"
+                    placeholder="Enter Email" required />
+                <label for="floatingInput">Email address</label>
+                <div class="error" *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                    Please provide an Email.
+                </div>
+            </div>
+            <div class="form-floating">
+                <input type="password" formControlName="password" class="form-control" id="floatingPassword"
+                    placeholder="Enter Password" required />
+                <label for="floatingPassword">Password</label>
+                <div class="error" *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                    Please provide a Password.
+                </div>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.valid">
+                Sign in
+            </button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+        </form>
+    </main>
+</div>

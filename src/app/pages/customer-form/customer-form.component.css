@@ -1,0 +1,16 @@
+.form-container {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 20px 35px;
+}
+
+.section-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.card-expiry {
+    display: flex;
+    gap: 10px;
+}

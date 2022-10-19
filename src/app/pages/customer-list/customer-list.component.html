@@ -1,0 +1,33 @@
+<app-layout></app-layout>
+<div class="container">
+    <div>
+        <h3>Transaction List</h3>
+        <section>
+            <div class="table-responsive" *ngIf="tableData.length > 0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let column of columns">
+                                {{column}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableData">
+                            <td>{{data.reference}}</td>
+                            <td>{{data.customerNumber}}</td>
+                            <td>{{data.customerName}}</td>
+                            <td>{{data.customerAddress}}</td>
+                            <td>{{data.customerPhoneNumber}}</td>
+                            <td>{{data.transferAmount}}</td>
+                            <td>{{data.transferCurrency}}</td>
+                            <td>{{data.benificiaryBank}}</td>
+                            <td>{{data.benificiaryAccNumber}}</td>
+                            <td>{{data.paymentDetail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>

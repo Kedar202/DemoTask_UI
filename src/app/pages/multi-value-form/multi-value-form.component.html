@@ -1,0 +1,253 @@
+<app-layout></app-layout>
+<div class="container">
+    <div>
+        <h3>Multi Value Form</h3>
+        <button class="btn btn-secondary" (click)="resetForm()">Reset From</button>
+    </div>
+    <br/>
+    <div class="w-100 m-auto">
+        <form [formGroup]="multiValueForm" (ngSubmit)="onSubmit()">
+            <ng-container formArrayName="forms">
+                <ng-container *ngFor="let form of forms.controls; let i = index">
+                    <div [formGroup]="form">
+                        <div class="form-container">
+                            <section class="section-container py-3 mb-4 border-bottom">
+                                <div>
+                                    <label>Is Customer</label>
+                                    <br/>
+                                    <input type="radio" formControlName="isCustomer" id="NEW" value="NEW"/> New
+                                    <input type="radio" formControlName="isCustomer" id="EXISTING" value="EXISTING"/> Existing
+                                    <div class="error" *ngIf="form.get('isCustomer').invalid && (form.get('isCustomer').dirty || form.get('isCustomer').touched)">
+                                        Please select Anyone.
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Reference</label>
+                                    <input type="text" formControlName="reference" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('reference').invalid && (form.get('reference').dirty || form.get('reference').touched)">
+                                        Please provide a Reference Number.
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Customer Number</label>
+                                    <input type="text" formControlName="customerNumber" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('customerNumber').invalid && (form.get('customerNumber').dirty || form.get('customerNumber').touched)">
+                                        <div *ngIf="form.get('customerNumber').errors.pattern">
+                                            Please Enter Number Only
+                                        </div>
+                                        <div *ngIf="form.get('customerNumber').errors.required">
+                                            Please provide a Customer Number.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Customer Name</label>
+                                    <input type="text" formControlName="customerName" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('customerName').invalid && (form.get('customerName').dirty || form.get('customerName').touched)">
+                                        <div *ngIf="form.get('customerName').errors.pattern">
+                                            Please Enter Characters Only
+                                        </div>
+                                        <div *ngIf="form.get('customerName').errors.required">
+                                            Please provide a Customer Name.
+                                        </div>
+                                    </div> 
+                                </div>
+                                
+                                <div>
+                                    <label for="floatingInput">Customer Phonenumber</label>
+                                    <input type="text" formControlName="customerPhoneNumber" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('customerPhoneNumber').invalid && (form.get('customerPhoneNumber').dirty || form.get('customerPhoneNumber').touched)">
+                                        <div *ngIf="form.get('customerPhoneNumber').errors.pattern">
+                                            Please Enter Number Only
+                                        </div>
+                                        <div *ngIf="form.get('customerPhoneNumber').errors.required">
+                                            Please provide a Customer Phone Number.
+                                        </div>
+                                        <div *ngIf="form.get('customerPhoneNumber').hasError('maxlength') || form.get('customerPhoneNumber').hasError('minlength')">
+                                            Please provide 10 Digit Only.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Transfer Amount</label>
+                                    <input type="text" formControlName="transferAmount" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('transferAmount').invalid && (form.get('transferAmount').dirty || form.get('transferAmount').touched)">
+                                        <div *ngIf="form.get('transferAmount').errors.pattern">
+                                            Please Enter Number Only
+                                        </div>
+                                        <div *ngIf="form.get('transferAmount').errors.required">
+                                            Please provide a Transfer Amount.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Transfer Currency</label>
+                                    <select id="floatingInput" class="form-control" formControlName="transferCurrency">
+                                        <option disabled value="null">Select Currency</option>
+                                        <option value="AED">AED</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="CHF">CHF</option>
+                                        <option value="MUR">MUR</option>
+                                        <option value="USD">USD</option>
+                                    </select>
+                                    <div class="error" *ngIf="form.get('transferCurrency').invalid && (form.get('transferCurrency').dirty || form.get('transferCurrency').touched)">
+                                        <div *ngIf="form.get('transferCurrency').errors.required">
+                                            Please provide a Transfer Currency.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Customer Address</label>
+                                    <textarea name="customerAddress" class="form-control" formControlName="customerAddress" cols="33" rows="2"></textarea>
+                                    <div class="error" *ngIf="form.get('customerAddress').invalid && (form.get('customerAddress').dirty || form.get('customerAddress').touched)">
+                                        <div *ngIf="form.get('customerAddress').errors.required">
+                                            Please provide a Customer Address.
+                                        </div>
+                                    </div> 
+                                </div>
+                            </section>
+                            <section class="section-container py-3 mb-4 border-bottom">
+                                <div>
+                                    <label for="floatingInput">Benificiary Bank</label>
+                                    <input type="text" formControlName="benificiaryBank" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('benificiaryBank').invalid && (form.get('benificiaryBank').dirty || form.get('benificiaryBank').touched)">
+                                        <div *ngIf="form.get('benificiaryBank').errors.pattern">
+                                            Please Enter Characters Only
+                                        </div>
+                                        <div *ngIf="form.get('benificiaryBank').errors.required">
+                                            Please provide a Benificiary Bank.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Benificiary Account Number</label>
+                                    <input type="text" formControlName="benificiaryAccNumber" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('benificiaryAccNumber').invalid && (form.get('benificiaryAccNumber').dirty || form.get('benificiaryAccNumber').touched)">
+                                        <div *ngIf="form.get('benificiaryAccNumber').errors.pattern">
+                                            Please Enter Number Only
+                                        </div>
+                                        <div *ngIf="form.get('benificiaryAccNumber').errors.required">
+                                            Please provide a Benificiary Account Number.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Payment Detail</label>
+                                    <input type="text" formControlName="paymentDetail" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('paymentDetail').invalid && (form.get('paymentDetail').dirty || form.get('paymentDetail').touched)">
+                                        <div *ngIf="form.get('paymentDetail').errors.required">
+                                            Please provide a Payment Detail.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Region</label>
+                                    <select id="floatingInput" class="form-control" formControlName="region">
+                                        <option disabled value="null">Select Region</option>
+                                        <option value="PORT_LOUIS">Port Louis</option>
+                                        <option value="CUREPIPE">Curepipe</option>
+                                        <option value="VACOAS">Vacoas</option>
+                                        <option value="PORT_MATHURIN">Port Mathurin</option>
+                                    </select>
+                                    <div class="error" *ngIf="form.get('region').invalid && (form.get('region').dirty || form.get('region').touched)">
+                                        <div *ngIf="form.get('region').errors.required">
+                                            Please select a Region.
+                                        </div>
+                                    </div> 
+                                </div>
+                            </section>
+                            <section class="section-container py-3 mb-4 border-bottom">
+                                <div>
+                                    <label for="floatingInput">Card Number</label>
+                                    <input type="text" formControlName="cardNumber" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('cardNumber').invalid && (form.get('cardNumber').dirty || form.get('cardNumber').touched)">
+                                        <div *ngIf="form.get('cardNumber').errors.pattern">
+                                            Please Enter Number Only
+                                        </div>
+                                        <div *ngIf="form.get('cardNumber').errors.required">
+                                            Please provide a Card Number.
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="card-expiry">
+                                    <div>
+                                        <label for="floatingInput">Expiry Date</label>
+                                        <input type="text" formControlName="expiryDate" class="form-control" id="floatingInput"/>
+                                        <div class="error" *ngIf="form.get('expiryDate').invalid && (form.get('expiryDate').dirty || form.get('expiryDate').touched)">
+                                            <div *ngIf="form.get('expiryDate').errors.pattern">
+                                                Please Enter Number Only
+                                            </div>
+                                            <div *ngIf="form.get('expiryDate').errors.required">
+                                                Please provide a Card Expiry Date.
+                                            </div>
+                                            <div *ngIf="form.get('expiryDate').hasError('maxlength') || form.get('expiryDate').hasError('minlength')">
+                                                Please provide 2 Digit Only.
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div>
+                                        <label for="floatingInput">Expiry Year</label>
+                                        <input type="text" formControlName="expiryYear" class="form-control" id="floatingInput"/>
+                                        <div class="error" *ngIf="form.get('expiryYear').invalid && (form.get('expiryYear').dirty || form.get('expiryYear').touched)">
+                                            <div *ngIf="form.get('expiryYear').errors.pattern">
+                                                Please Enter Number Only
+                                            </div>
+                                            <div *ngIf="form.get('expiryYear').errors.required">
+                                                Please provide a Card Expiry Year.
+                                            </div>
+                                            <div *ngIf="form.get('expiryYear').hasError('maxlength') || form.get('expiryYear').hasError('minlength')">
+                                                Please provide last 2 Digit Only.
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="floatingInput">Name On Card</label>
+                                    <input type="text" formControlName="name" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
+                                        <div *ngIf="form.get('name').errors.pattern">
+                                            Please Enter Characters Only
+                                        </div>
+                                        <div *ngIf="form.get('name').errors.required">
+                                            Please provide a Name.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="floatingInput">CVV</label>
+                                    <input type="text" formControlName="cvv" class="form-control" id="floatingInput"/>
+                                    <div class="error" *ngIf="form.get('cvv').invalid && (form.get('cvv').dirty || form.get('cvv').touched)">
+                                        <div *ngIf="form.get('cvv').errors.pattern">
+                                            Please Enter Number Only
+                                        </div>
+                                        <div *ngIf="form.get('cvv').errors.required">
+                                            Please provide a CVV.
+                                        </div>
+                                        <div *ngIf="form.get('cvv').hasError('maxlength') || form.get('cvv').hasError('minlength')">
+                                            Please provide 3/4 Digit.
+                                        </div>
+                                    </div> 
+                                </div>
+                            </section>
+                            <section class="action-button">
+                                <button class="btn btn-lg btn-primary" type="button" (click)="addForm()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                    </svg>
+                                    <!-- Add -->
+                                </button>
+                                <button *ngIf="i !== 0" class="btn btn-lg btn-danger" type="button" (click)="removeForm(i)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                    <!-- Remove -->
+                                </button>
+                            </section>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </form>
+    </div>
+</div>
